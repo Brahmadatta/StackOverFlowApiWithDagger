@@ -1,0 +1,21 @@
+package example.com.stackoverflowapiproject.screens;
+
+public class Question {
+
+    private final String mId;
+
+    private final String mTitle;
+
+    public Question(String mId, String mTitle) {
+        this.mId = mId;
+        this.mTitle = mTitle;
+    }
+
+    public String getmId() {
+        return mId;
+    }
+
+    public String getmTitle() {
+        return mTitle;
+    }
+}
