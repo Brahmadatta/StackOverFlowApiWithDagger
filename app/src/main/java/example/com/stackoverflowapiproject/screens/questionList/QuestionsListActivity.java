@@ -1,4 +1,4 @@
-package example.com.stackoverflowapiproject;
+package example.com.stackoverflowapiproject.screens.questionList;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import example.com.stackoverflowapiproject.R;
 import example.com.stackoverflowapiproject.common.Constants;
 import example.com.stackoverflowapiproject.networking.StackOverflowApi;
 import example.com.stackoverflowapiproject.networking.questions.QuestionsListResponseSchema;
