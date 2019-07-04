@@ -20,7 +20,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class QuestionsListActivity extends AppCompatActivity implements QuestionsListViewMvcImpl.Listener {
+public class QuestionsListActivity extends AppCompatActivity implements QuestionsRecyclerAdapter.Listener, QuestionsListViewMvc.Listener {
 
     private StackOverflowApi mStackOverflowApi;
 
@@ -34,7 +34,7 @@ public class QuestionsListActivity extends AppCompatActivity implements Question
 
 
 
-        mViewMvc = new QuestionsListViewMvcImpl(LayoutInflater.from(this),null);
+        mViewMvc = new QuestionsRecyclerviewMvcImpl(LayoutInflater.from(this),null);
 
 
 
