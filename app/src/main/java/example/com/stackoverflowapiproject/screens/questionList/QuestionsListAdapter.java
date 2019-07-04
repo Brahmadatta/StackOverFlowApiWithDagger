@@ -12,7 +12,7 @@ import org.w3c.dom.Text;
 import example.com.stackoverflowapiproject.R;
 import example.com.stackoverflowapiproject.screens.Question;
 
-public class QuestionsListAdapter extends ArrayAdapter<Question> {
+public class QuestionsListAdapter extends ArrayAdapter<Question> implements QuestionsListItemViewMvc.Listener {
 
     private final OnQuestionClickListener mOnQuestionClickListener;
 
@@ -21,36 +21,46 @@ public class QuestionsListAdapter extends ArrayAdapter<Question> {
         mOnQuestionClickListener = onQuestionClickListener;
     }
 
-    public interface OnQuestionClickListener {
-        void onQuestionClicked(Question question);
-    }
+
 
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if (convertView == null){
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_quetion_list_item,parent,false);
+
+            QuestionsListItemViewMvc viewMvc = new QuestionListItemViewMvcImpl(LayoutInflater.from(getContext()),parent);
+
+            viewMvc.registerListener(this);
+
+            convertView = viewMvc.getRootView();
+            convertView.setTag(viewMvc);
+
+
         }
         final Question question = getItem(position);
 
-        //bond the data to views
-        TextView txtTitle = convertView.findViewById(R.id.txt_title);
-        txtTitle.setText(question.getmTitle());
 
-        //set listener
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        /* TextView txtTitle = convertView.findViewById(R.id.txt_title);
+        txtTitle.setText(question.getmTitle());*/
 
-                onQuestionClicked(question);
-            }
-        });
+        //bind the data to views
+
+        QuestionsListItemViewMvc viewMvc = (QuestionsListItemViewMvc) convertView.getTag();
+        viewMvc.bindQuestion(question);
+
+
 
         return convertView;
     }
 
-    private void onQuestionClicked(Question question){
+
+    public interface OnQuestionClickListener {
+        void onQuestionClicked(Question question);
+    }
+
+    @Override
+    public void onQuestionClicked(Question question){
         mOnQuestionClickListener.onQuestionClicked(question);
     }
 }
