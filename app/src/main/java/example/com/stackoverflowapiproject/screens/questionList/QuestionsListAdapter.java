@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import example.com.stackoverflowapiproject.R;
 import example.com.stackoverflowapiproject.screens.Question;
 
@@ -23,24 +25,18 @@ public class QuestionsListAdapter extends ArrayAdapter<Question> {
         void onQuestionClicked(Question question);
     }
 
-    public static class ViewHolder{
-        private TextView mTxtTitle;
-    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if (convertView == null){
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_quetion_list_item,parent,false);
-            ViewHolder viewHolder = new ViewHolder();
-            viewHolder.mTxtTitle = convertView.findViewById(R.id.txt_title);
-            convertView.setTag(viewHolder);
         }
         final Question question = getItem(position);
 
         //bond the data to views
-        ViewHolder viewHolder = (ViewHolder) convertView.getTag();
-        viewHolder.mTxtTitle.setText(question.getmTitle());
+        TextView txtTitle = convertView.findViewById(R.id.txt_title);
+        txtTitle.setText(question.getmTitle());
 
         //set listener
         convertView.setOnClickListener(new View.OnClickListener() {
