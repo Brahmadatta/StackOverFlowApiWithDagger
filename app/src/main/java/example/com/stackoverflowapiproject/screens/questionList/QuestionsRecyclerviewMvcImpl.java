@@ -1,5 +1,6 @@
 package example.com.stackoverflowapiproject.screens.questionList;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,47 +12,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import example.com.stackoverflowapiproject.R;
+import example.com.stackoverflowapiproject.networking.common.BaseObservableViewMvc;
+import example.com.stackoverflowapiproject.networking.common.BaseViewMvc;
+import example.com.stackoverflowapiproject.networking.common.ViewMvcFactory;
 import example.com.stackoverflowapiproject.screens.Question;
 
-public class QuestionsRecyclerviewMvcImpl implements QuestionsListViewMvc, QuestionsRecyclerAdapter.Listener{
+public class QuestionsRecyclerviewMvcImpl extends BaseObservableViewMvc<QuestionsListViewMvc.Listener> implements QuestionsListViewMvc, QuestionsRecyclerAdapter.Listener{
 
     private RecyclerView mRecyclerViewQuestions;
     private QuestionsRecyclerAdapter mAdapter;
 
-    private final View mRootView;
 
-    private final List<Listener> mListeners = new ArrayList<>(1);
 
-    public QuestionsRecyclerviewMvcImpl(LayoutInflater inflater, ViewGroup parent){
+    public QuestionsRecyclerviewMvcImpl(LayoutInflater inflater, ViewGroup parent, ViewMvcFactory viewMvcFactory){
 
-        mRootView = inflater.inflate(R.layout.activity_main,parent,false);
+         setRootView(inflater.inflate(R.layout.activity_main,parent,false));
 
         mRecyclerViewQuestions = findViewById(R.id.recyclerView_questions);
-        mRecyclerViewQuestions.setLayoutManager(new LinearLayoutManager(getRootView().getContext()));
-        mAdapter = new QuestionsRecyclerAdapter(inflater,this);
+        mRecyclerViewQuestions.setLayoutManager(new LinearLayoutManager(getContext()));
+        mAdapter = new QuestionsRecyclerAdapter(this,viewMvcFactory);
         mRecyclerViewQuestions.setAdapter(mAdapter);
     }
 
-    private <T extends View> T findViewById(int id) {
 
-        return getRootView().findViewById(id);
-    }
 
-    @Override
-    public View getRootView() {
-        return mRootView;
-    }
-
-    @Override
-    public void registerListener(Listener listener) {
-        mListeners.add(listener);
-    }
-
-    @Override
-    public void unregisterListener(Listener listener) {
-
-        mListeners.remove(listener);
-    }
 
     @Override
     public void bindQuestions(List<Question> questions) {
@@ -60,9 +44,10 @@ public class QuestionsRecyclerviewMvcImpl implements QuestionsListViewMvc, Quest
 
     }
 
+
     @Override
     public void onQuestionClicked(Question question) {
-        for (Listener listener : mListeners){
+        for (Listener listener : getListeners()){
             listener.onQuestionClicked(question);
         }
     }

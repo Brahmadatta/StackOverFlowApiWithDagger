@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import example.com.stackoverflowapiproject.networking.common.ViewMvcFactory;
 import example.com.stackoverflowapiproject.screens.Question;
 
 public class QuestionsRecyclerAdapter extends RecyclerView.Adapter<QuestionsRecyclerAdapter.QuestionRecylerViewHolder> implements QuestionsListItemViewMvc.Listener {
@@ -23,21 +24,21 @@ public class QuestionsRecyclerAdapter extends RecyclerView.Adapter<QuestionsRecy
     }
 
 
-    private final LayoutInflater mLayoutInflater;
+    private ViewMvcFactory viewMvcFactory;
     private final Listener mListener;
     private List<Question> mQuestion = new ArrayList<>();
 
-    public QuestionsRecyclerAdapter(LayoutInflater layoutInflater,Listener listener){
+    public QuestionsRecyclerAdapter(Listener listener, ViewMvcFactory viewMvcFactory){
 
         mListener = listener;
-        mLayoutInflater = layoutInflater;
+        this.viewMvcFactory = viewMvcFactory;
     }
 
 
     @NonNull
     @Override
     public QuestionRecylerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        QuestionsListItemViewMvc viewMvc = new QuestionListItemViewMvcImpl(mLayoutInflater,parent);
+        QuestionsListItemViewMvc viewMvc = viewMvcFactory.getQuestionListViewItemMvc(parent);
         viewMvc.registerListener(this);
         return new QuestionRecylerViewHolder(viewMvc);
     }

@@ -11,6 +11,7 @@ import java.util.List;
 
 import example.com.stackoverflowapiproject.common.Constants;
 import example.com.stackoverflowapiproject.networking.StackOverflowApi;
+import example.com.stackoverflowapiproject.networking.common.BaseActivity;
 import example.com.stackoverflowapiproject.networking.questions.QuestionsListResponseSchema;
 import example.com.stackoverflowapiproject.networking.questions.QuestionsSchema;
 import example.com.stackoverflowapiproject.screens.Question;
@@ -20,7 +21,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class QuestionsListActivity extends AppCompatActivity implements QuestionsRecyclerAdapter.Listener, QuestionsListViewMvc.Listener {
+public class QuestionsListActivity extends BaseActivity implements QuestionsRecyclerAdapter.Listener, QuestionsListViewMvc.Listener {
 
     private StackOverflowApi mStackOverflowApi;
 
@@ -34,18 +35,14 @@ public class QuestionsListActivity extends AppCompatActivity implements Question
 
 
 
-        mViewMvc = new QuestionsRecyclerviewMvcImpl(LayoutInflater.from(this),null);
+        mViewMvc = getCompositionRoot().getViewMvcFactory().getQuestionListViewMvc(null);
 
 
 
 
         mViewMvc.registerListener(this);
 
-        mStackOverflowApi = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(StackOverflowApi.class);
+        mStackOverflowApi = getCompositionRoot().getStackOverflowApi();
 
         setContentView(mViewMvc.getRootView());
 
