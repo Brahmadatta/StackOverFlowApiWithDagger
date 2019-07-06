@@ -13,7 +13,6 @@ import java.util.List;
 
 import example.com.stackoverflowapiproject.R;
 import example.com.stackoverflowapiproject.networking.common.BaseObservableViewMvc;
-import example.com.stackoverflowapiproject.networking.common.BaseViewMvc;
 import example.com.stackoverflowapiproject.networking.common.ViewMvcFactory;
 import example.com.stackoverflowapiproject.screens.Question;
 
