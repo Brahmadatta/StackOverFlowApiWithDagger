@@ -1,16 +1,16 @@
-package example.com.stackoverflowapiproject.networking.common;
+package example.com.stackoverflowapiproject.screens.questionList.common;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 
-import example.com.stackoverflowapiproject.screens.questionList.QuestionDetailsViewMvcImpl;
-import example.com.stackoverflowapiproject.screens.questionList.QuestionListItemViewMvcImpl;
-import example.com.stackoverflowapiproject.screens.questionList.QuestionsDetailViewMvc;
-import example.com.stackoverflowapiproject.screens.questionList.QuestionsListItemViewMvc;
-import example.com.stackoverflowapiproject.screens.questionList.QuestionsListViewMvc;
-import example.com.stackoverflowapiproject.screens.questionList.QuestionsRecyclerviewMvcImpl;
+import example.com.stackoverflowapiproject.screens.questionList.questionList.QuestionDetailsViewMvcImpl;
+import example.com.stackoverflowapiproject.screens.questionList.questionList.QuestionListItemViewMvcImpl;
+import example.com.stackoverflowapiproject.screens.questionList.questionList.QuestionsDetailViewMvc;
+import example.com.stackoverflowapiproject.screens.questionList.questionList.QuestionsListItemViewMvc;
+import example.com.stackoverflowapiproject.screens.questionList.questionList.QuestionsListViewMvc;
+import example.com.stackoverflowapiproject.screens.questionList.questionList.QuestionsRecyclerviewMvcImpl;
 
 public class ViewMvcFactory {
 

@@ -1,7 +1,9 @@
-package example.com.stackoverflowapiproject.screens.questionList;
+package example.com.stackoverflowapiproject.screens.questionList.questionList;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,15 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import example.com.stackoverflowapiproject.R;
-import example.com.stackoverflowapiproject.networking.common.BaseObservableViewMvc;
-import example.com.stackoverflowapiproject.networking.common.ViewMvcFactory;
+import example.com.stackoverflowapiproject.screens.questionList.common.BaseObservableViewMvc;
+import example.com.stackoverflowapiproject.screens.questionList.common.ViewMvcFactory;
 import example.com.stackoverflowapiproject.questions.Question;
 
 public class QuestionsRecyclerviewMvcImpl extends BaseObservableViewMvc<QuestionsListViewMvc.Listener> implements QuestionsListViewMvc, QuestionsRecyclerAdapter.Listener{
 
     private RecyclerView mRecyclerViewQuestions;
     private QuestionsRecyclerAdapter mAdapter;
-
+    private ProgressBar mProgressBar;
 
 
     public QuestionsRecyclerviewMvcImpl(LayoutInflater inflater, ViewGroup parent, ViewMvcFactory viewMvcFactory){
@@ -25,6 +27,7 @@ public class QuestionsRecyclerviewMvcImpl extends BaseObservableViewMvc<Question
          setRootView(inflater.inflate(R.layout.activity_main,parent,false));
 
         mRecyclerViewQuestions = findViewById(R.id.recyclerView_questions);
+        mProgressBar = findViewById(R.id.progress_bar);
         mRecyclerViewQuestions.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter = new QuestionsRecyclerAdapter(this,viewMvcFactory);
         mRecyclerViewQuestions.setAdapter(mAdapter);
@@ -38,6 +41,16 @@ public class QuestionsRecyclerviewMvcImpl extends BaseObservableViewMvc<Question
 
         mAdapter.bindQuestions(questions);
 
+    }
+
+    @Override
+    public void showProgressBarIndication() {
+        mProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgressBarIndication() {
+        mProgressBar.setVisibility(View.GONE);
     }
 
 

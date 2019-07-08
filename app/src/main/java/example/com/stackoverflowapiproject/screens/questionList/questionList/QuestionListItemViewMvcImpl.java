@@ -1,4 +1,4 @@
-package example.com.stackoverflowapiproject.screens.questionList;
+package example.com.stackoverflowapiproject.screens.questionList.questionList;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import example.com.stackoverflowapiproject.R;
-import example.com.stackoverflowapiproject.networking.common.BaseObservableViewMvc;
+import example.com.stackoverflowapiproject.screens.questionList.common.BaseObservableViewMvc;
 import example.com.stackoverflowapiproject.questions.Question;
 
 public class QuestionListItemViewMvcImpl extends BaseObservableViewMvc<QuestionsListItemViewMvc.Listener> implements QuestionsListItemViewMvc {

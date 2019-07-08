@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">StackOverflowAPIProject</string>
+    <string name="network_error">Network call Failed</string>
 </resources>

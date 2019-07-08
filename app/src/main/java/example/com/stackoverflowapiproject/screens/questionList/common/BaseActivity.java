@@ -1,9 +1,8 @@
-package example.com.stackoverflowapiproject.networking.common;
+package example.com.stackoverflowapiproject.screens.questionList.common;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import example.com.stackoverflowapiproject.CustomApplication;
-import example.com.stackoverflowapiproject.common.dependencyInjection.CompositionRoot;
 import example.com.stackoverflowapiproject.common.dependencyInjection.ControllerCompositionRoot;
 
 public class BaseActivity extends AppCompatActivity {
