@@ -1,31 +1,22 @@
 package example.com.stackoverflowapiproject.screens.questionList;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import example.com.stackoverflowapiproject.common.Constants;
 import example.com.stackoverflowapiproject.networking.StackOverflowApi;
 import example.com.stackoverflowapiproject.networking.common.BaseActivity;
 import example.com.stackoverflowapiproject.networking.questions.QuestionsListResponseSchema;
 import example.com.stackoverflowapiproject.networking.questions.QuestionsSchema;
-import example.com.stackoverflowapiproject.screens.Question;
+import example.com.stackoverflowapiproject.questions.Question;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class QuestionsListActivity extends BaseActivity implements QuestionsRecyclerAdapter.Listener, QuestionsListViewMvc.Listener {
 
     private StackOverflowApi mStackOverflowApi;
-
-
 
     private QuestionsListViewMvc mViewMvc;
 
@@ -34,15 +25,11 @@ public class QuestionsListActivity extends BaseActivity implements QuestionsRecy
         super.onCreate(savedInstanceState);
 
 
+        mStackOverflowApi = getCompositionRoot().getStackOverflowApi();
 
         mViewMvc = getCompositionRoot().getViewMvcFactory().getQuestionListViewMvc(null);
 
-
-
-
         mViewMvc.registerListener(this);
-
-        mStackOverflowApi = getCompositionRoot().getStackOverflowApi();
 
         setContentView(mViewMvc.getRootView());
 
@@ -93,6 +80,7 @@ public class QuestionsListActivity extends BaseActivity implements QuestionsRecy
 
     @Override
     public void onQuestionClicked(Question question) {
-        Toast.makeText(this, question.getmTitle(), Toast.LENGTH_SHORT).show();
+
+        QuestionsDetailActivity.start(this,question.getmId());
     }
 }

@@ -1,7 +1,5 @@
 package example.com.stackoverflowapiproject.screens.questionList;
 
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -11,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import example.com.stackoverflowapiproject.networking.common.ViewMvcFactory;
-import example.com.stackoverflowapiproject.screens.Question;
+import example.com.stackoverflowapiproject.questions.Question;
 
 public class QuestionsRecyclerAdapter extends RecyclerView.Adapter<QuestionsRecyclerAdapter.QuestionRecylerViewHolder> implements QuestionsListItemViewMvc.Listener {
 

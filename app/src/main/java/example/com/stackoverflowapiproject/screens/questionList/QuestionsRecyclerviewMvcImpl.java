@@ -1,20 +1,17 @@
 package example.com.stackoverflowapiproject.screens.questionList;
 
-import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import example.com.stackoverflowapiproject.R;
 import example.com.stackoverflowapiproject.networking.common.BaseObservableViewMvc;
 import example.com.stackoverflowapiproject.networking.common.ViewMvcFactory;
-import example.com.stackoverflowapiproject.screens.Question;
+import example.com.stackoverflowapiproject.questions.Question;
 
 public class QuestionsRecyclerviewMvcImpl extends BaseObservableViewMvc<QuestionsListViewMvc.Listener> implements QuestionsListViewMvc, QuestionsRecyclerAdapter.Listener{
 

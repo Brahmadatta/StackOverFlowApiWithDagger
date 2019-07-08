@@ -17,5 +17,3 @@ public interface StackOverflowApi {
     Call<QuestionsListResponseSchema> fetchLastActiveQuestions(@Query("pagesize") Integer pageSize);
 
 }
-
-

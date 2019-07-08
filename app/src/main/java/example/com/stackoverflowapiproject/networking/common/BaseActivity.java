@@ -18,4 +18,8 @@ public class BaseActivity extends AppCompatActivity {
         }
         return mControllerCompositionRoot;
     }
+
+    /*protected CompositionRoot getCompositionRoot() {
+        return ((CustomApplication) getApplication()).getCompositionRoot();
+    }*/
 }

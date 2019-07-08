@@ -1,4 +1,4 @@
-package example.com.stackoverflowapiproject.screens;
+package example.com.stackoverflowapiproject.questions;
 
 public class Question {
 
