@@ -1,4 +1,4 @@
-package example.com.stackoverflowapiproject;
+package example.com.stackoverflowapiproject.common;
 
 import android.app.Application;
 

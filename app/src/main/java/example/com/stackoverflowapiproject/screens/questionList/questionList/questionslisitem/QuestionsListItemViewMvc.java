@@ -1,6 +1,6 @@
-package example.com.stackoverflowapiproject.screens.questionList;
+package example.com.stackoverflowapiproject.screens.questionList.questionList.questionslisitem;
 
-import example.com.stackoverflowapiproject.networking.common.ObservableViewMvc;
+import example.com.stackoverflowapiproject.screens.questionList.common.views.ObservableViewMvc;
 import example.com.stackoverflowapiproject.questions.Question;
 
 public interface QuestionsListItemViewMvc extends ObservableViewMvc<QuestionsListItemViewMvc.Listener> {

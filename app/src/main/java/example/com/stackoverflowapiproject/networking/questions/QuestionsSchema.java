@@ -2,6 +2,8 @@ package example.com.stackoverflowapiproject.networking.questions;
 
 import com.google.gson.annotations.SerializedName;
 
+import example.com.stackoverflowapiproject.networking.users.UserSchema;
+
 public class QuestionsSchema {
 
     @SerializedName("title")

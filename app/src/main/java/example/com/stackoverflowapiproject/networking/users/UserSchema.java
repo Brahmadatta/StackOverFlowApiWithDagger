@@ -1,4 +1,4 @@
-package example.com.stackoverflowapiproject.networking.questions;
+package example.com.stackoverflowapiproject.networking.users;
 
 import com.google.gson.annotations.SerializedName;
 

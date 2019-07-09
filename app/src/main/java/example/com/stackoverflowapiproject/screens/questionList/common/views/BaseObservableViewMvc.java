@@ -1,10 +1,13 @@
-package example.com.stackoverflowapiproject.networking.common;
+package example.com.stackoverflowapiproject.screens.questionList.common.views;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class BaseObservableViewMvc<ListenerType> extends BaseViewMvc implements ObservableViewMvc<ListenerType>{
+import example.com.stackoverflowapiproject.screens.questionList.common.views.BaseViewMvc;
+import example.com.stackoverflowapiproject.screens.questionList.common.views.ObservableViewMvc;
+
+public abstract class BaseObservableViewMvc<ListenerType> extends BaseViewMvc implements ObservableViewMvc<ListenerType> {
 
 
     private Set<ListenerType> mListeners = new HashSet<>();

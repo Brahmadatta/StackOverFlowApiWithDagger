@@ -1,4 +1,4 @@
-package example.com.stackoverflowapiproject.screens.questionList;
+package example.com.stackoverflowapiproject.screens.questionList.questionList;
 
 import android.view.ViewGroup;
 
@@ -8,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import example.com.stackoverflowapiproject.networking.common.ViewMvcFactory;
+import example.com.stackoverflowapiproject.screens.questionList.common.ViewMvcFactory;
 import example.com.stackoverflowapiproject.questions.Question;
+import example.com.stackoverflowapiproject.screens.questionList.questionList.questionslisitem.QuestionsListItemViewMvc;
 
 public class QuestionsRecyclerAdapter extends RecyclerView.Adapter<QuestionsRecyclerAdapter.QuestionRecylerViewHolder> implements QuestionsListItemViewMvc.Listener {
 
