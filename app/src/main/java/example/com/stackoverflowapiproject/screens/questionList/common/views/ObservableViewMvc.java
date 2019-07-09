@@ -1,4 +1,4 @@
-package example.com.stackoverflowapiproject.screens.questionList.common;
+package example.com.stackoverflowapiproject.screens.questionList.common.views;
 
 public interface ObservableViewMvc<ListenerType> extends ViewMvc {
 

@@ -1,21 +1,8 @@
 package example.com.stackoverflowapiproject.screens.questionList.questionList;
 
 import android.os.Bundle;
-import android.widget.Toast;
-import java.util.ArrayList;
-import java.util.List;
-import example.com.stackoverflowapiproject.common.Constants;
-import example.com.stackoverflowapiproject.networking.StackOverflowApi;
-import example.com.stackoverflowapiproject.questions.FetchLastActiveQuestionsUseCase;
-import example.com.stackoverflowapiproject.questions.FetchQuestionDetailsUseCase;
-import example.com.stackoverflowapiproject.questions.QuestionDetails;
-import example.com.stackoverflowapiproject.screens.questionList.common.BaseActivity;
-import example.com.stackoverflowapiproject.networking.questions.QuestionsListResponseSchema;
-import example.com.stackoverflowapiproject.networking.questions.QuestionsSchema;
-import example.com.stackoverflowapiproject.questions.Question;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+
+import example.com.stackoverflowapiproject.screens.questionList.common.controllers.BaseActivity;
 
 public class QuestionsListActivity extends BaseActivity {
 

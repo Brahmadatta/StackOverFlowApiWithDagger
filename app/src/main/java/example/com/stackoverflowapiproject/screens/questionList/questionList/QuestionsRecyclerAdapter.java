@@ -10,6 +10,7 @@ import java.util.List;
 
 import example.com.stackoverflowapiproject.screens.questionList.common.ViewMvcFactory;
 import example.com.stackoverflowapiproject.questions.Question;
+import example.com.stackoverflowapiproject.screens.questionList.questionList.questionslisitem.QuestionsListItemViewMvc;
 
 public class QuestionsRecyclerAdapter extends RecyclerView.Adapter<QuestionsRecyclerAdapter.QuestionRecylerViewHolder> implements QuestionsListItemViewMvc.Listener {
 

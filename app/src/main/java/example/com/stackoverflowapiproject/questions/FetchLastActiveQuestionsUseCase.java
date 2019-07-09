@@ -3,16 +3,16 @@ package example.com.stackoverflowapiproject.questions;
 import java.util.ArrayList;
 import java.util.List;
 
+import example.com.stackoverflowapiproject.common.BaseObservable;
 import example.com.stackoverflowapiproject.common.Constants;
 import example.com.stackoverflowapiproject.networking.StackOverflowApi;
 import example.com.stackoverflowapiproject.networking.questions.QuestionsListResponseSchema;
 import example.com.stackoverflowapiproject.networking.questions.QuestionsSchema;
-import example.com.stackoverflowapiproject.screens.questionList.common.BaseObservableViewMvc;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FetchLastActiveQuestionsUseCase extends BaseObservableViewMvc<FetchLastActiveQuestionsUseCase.Listener> {
+public class FetchLastActiveQuestionsUseCase extends BaseObservable<FetchLastActiveQuestionsUseCase.Listener> {
 
     private final StackOverflowApi mStackOverflowApi;
 

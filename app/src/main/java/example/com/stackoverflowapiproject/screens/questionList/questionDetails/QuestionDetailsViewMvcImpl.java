@@ -1,4 +1,4 @@
-package example.com.stackoverflowapiproject.screens.questionList.questionList;
+package example.com.stackoverflowapiproject.screens.questionList.questionDetails;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,7 +7,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import example.com.stackoverflowapiproject.R;
-import example.com.stackoverflowapiproject.screens.questionList.common.BaseViewMvc;
+import example.com.stackoverflowapiproject.screens.questionList.common.views.BaseViewMvc;
 import example.com.stackoverflowapiproject.questions.QuestionDetails;
 
 public class QuestionDetailsViewMvcImpl extends BaseViewMvc implements QuestionsDetailViewMvc{

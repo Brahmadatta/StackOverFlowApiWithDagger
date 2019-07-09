@@ -1,12 +1,13 @@
-package example.com.stackoverflowapiproject.screens.questionList.questionList;
+package example.com.stackoverflowapiproject.screens.questionList.questionDetails;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
-import example.com.stackoverflowapiproject.screens.questionList.common.BaseActivity;
+
+import example.com.stackoverflowapiproject.screens.questionList.common.controllers.BaseActivity;
 import example.com.stackoverflowapiproject.questions.FetchQuestionDetailsUseCase;
 import example.com.stackoverflowapiproject.questions.QuestionDetails;
+import example.com.stackoverflowapiproject.screens.questionList.common.toastsHelper.ToastsHelper;
 
 public class QuestionsDetailActivity extends BaseActivity implements FetchQuestionDetailsUseCase.Listener {
 
@@ -15,7 +16,7 @@ public class QuestionsDetailActivity extends BaseActivity implements FetchQuesti
 
     private FetchQuestionDetailsUseCase mFetchQuestionDetailsUseCase;
 
-    private MessagesDisplayer mMessagesDisplayer;
+    private ToastsHelper mToastsHelper;
 
     private QuestionsDetailViewMvc mViewMvc;
 
@@ -31,7 +32,7 @@ public class QuestionsDetailActivity extends BaseActivity implements FetchQuesti
 
         mFetchQuestionDetailsUseCase = getCompositionRoot().getFetchQuestionsDetailUseCase();
 
-        mMessagesDisplayer = getCompositionRoot().getMessageDisplayer();
+        mToastsHelper = getCompositionRoot().getMessageDisplayer();
 
         mViewMvc = getCompositionRoot().getViewMvcFactory().getQuestionDetailsViewMvc(null);
 
@@ -71,6 +72,6 @@ public class QuestionsDetailActivity extends BaseActivity implements FetchQuesti
     @Override
     public void onQuestionDetailsFailed() {
         mViewMvc.hideProgressBarIndication();
-        mMessagesDisplayer.showUseCaseError();
+        mToastsHelper.showUseCaseError();
     }
 }

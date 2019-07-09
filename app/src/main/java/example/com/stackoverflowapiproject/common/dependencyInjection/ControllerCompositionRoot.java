@@ -8,9 +8,9 @@ import example.com.stackoverflowapiproject.networking.StackOverflowApi;
 import example.com.stackoverflowapiproject.questions.FetchLastActiveQuestionsUseCase;
 import example.com.stackoverflowapiproject.screens.questionList.common.ViewMvcFactory;
 import example.com.stackoverflowapiproject.questions.FetchQuestionDetailsUseCase;
-import example.com.stackoverflowapiproject.screens.questionList.questionList.MessagesDisplayer;
+import example.com.stackoverflowapiproject.screens.questionList.common.toastsHelper.ToastsHelper;
 import example.com.stackoverflowapiproject.screens.questionList.questionList.QuestionListController;
-import example.com.stackoverflowapiproject.screens.questionList.questionList.ScreensNavigator;
+import example.com.stackoverflowapiproject.screens.questionList.common.screensNavigator.ScreensNavigator;
 
 public class ControllerCompositionRoot {
 
@@ -51,8 +51,8 @@ public class ControllerCompositionRoot {
         return mActivity;
     }
 
-    public MessagesDisplayer getMessageDisplayer(){
-        return new MessagesDisplayer(getContext());
+    public ToastsHelper getMessageDisplayer(){
+        return new ToastsHelper(getContext());
     }
 
     public ScreensNavigator getScreenNavigator(){

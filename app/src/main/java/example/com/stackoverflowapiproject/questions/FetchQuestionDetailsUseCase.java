@@ -1,15 +1,15 @@
 package example.com.stackoverflowapiproject.questions;
 
 
+import example.com.stackoverflowapiproject.common.BaseObservable;
 import example.com.stackoverflowapiproject.networking.StackOverflowApi;
-import example.com.stackoverflowapiproject.screens.questionList.common.BaseObservableViewMvc;
 import example.com.stackoverflowapiproject.networking.questions.QuestionDetailsResponseSchema;
 import example.com.stackoverflowapiproject.networking.questions.QuestionsSchema;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FetchQuestionDetailsUseCase extends BaseObservableViewMvc<FetchQuestionDetailsUseCase.Listener> {
+public class FetchQuestionDetailsUseCase extends BaseObservable<FetchQuestionDetailsUseCase.Listener> {
 
     private final StackOverflowApi mStackOverflowApi;
 

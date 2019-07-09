@@ -1,6 +1,8 @@
-package example.com.stackoverflowapiproject.screens.questionList.questionList;
+package example.com.stackoverflowapiproject.screens.questionList.common.screensNavigator;
 
 import android.content.Context;
+
+import example.com.stackoverflowapiproject.screens.questionList.questionDetails.QuestionsDetailActivity;
 
 public class ScreensNavigator {
 

@@ -1,15 +1,15 @@
-package example.com.stackoverflowapiproject.screens.questionList.questionList;
+package example.com.stackoverflowapiproject.screens.questionList.common.toastsHelper;
 
 import android.content.Context;
 import android.widget.Toast;
 
 import example.com.stackoverflowapiproject.R;
 
-public class MessagesDisplayer {
+public class ToastsHelper {
 
     private final Context mContext;
 
-    public MessagesDisplayer(Context mContext) {
+    public ToastsHelper(Context mContext) {
         this.mContext = mContext;
     }
 

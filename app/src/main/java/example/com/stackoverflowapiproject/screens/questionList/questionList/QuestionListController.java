@@ -4,6 +4,8 @@ import java.util.List;
 
 import example.com.stackoverflowapiproject.questions.FetchLastActiveQuestionsUseCase;
 import example.com.stackoverflowapiproject.questions.Question;
+import example.com.stackoverflowapiproject.screens.questionList.common.toastsHelper.ToastsHelper;
+import example.com.stackoverflowapiproject.screens.questionList.common.screensNavigator.ScreensNavigator;
 
 public class QuestionListController implements QuestionsRecyclerAdapter.Listener, QuestionsListViewMvc.Listener, FetchLastActiveQuestionsUseCase.Listener {
 
@@ -13,15 +15,16 @@ public class QuestionListController implements QuestionsRecyclerAdapter.Listener
 
     private final ScreensNavigator mScreensNavigator;
 
-    private final MessagesDisplayer mMessagesDisplayer;
+    private final ToastsHelper mToastsHelper;
 
-    public QuestionListController(FetchLastActiveQuestionsUseCase mFetchLastActiveQuestionsUseCase, ScreensNavigator mScreensNavigator, MessagesDisplayer mMessagesDisplayer) {
+    public QuestionListController(FetchLastActiveQuestionsUseCase mFetchLastActiveQuestionsUseCase, ScreensNavigator mScreensNavigator, ToastsHelper mToastsHelper) {
         this.mFetchLastActiveQuestionsUseCase = mFetchLastActiveQuestionsUseCase;
         this.mScreensNavigator = mScreensNavigator;
-        this.mMessagesDisplayer = mMessagesDisplayer;
+        this.mToastsHelper = mToastsHelper;
     }
 
     public void onStart(){
+        mViewMvc.registerListener(this);
         mViewMvc.showProgressBarIndication();
         mFetchLastActiveQuestionsUseCase.registerListener(this);
         mFetchLastActiveQuestionsUseCase.fetchLastActiveQuestions();
@@ -29,10 +32,10 @@ public class QuestionListController implements QuestionsRecyclerAdapter.Listener
 
     public void bindView(QuestionsListViewMvc viewMvc){
         mViewMvc = viewMvc;
-        mViewMvc.registerListener(this);
     }
 
     public void onStop(){
+        mViewMvc.unregisterListener(this);
         mFetchLastActiveQuestionsUseCase.unregisterListener(this);
     }
 
@@ -45,7 +48,7 @@ public class QuestionListController implements QuestionsRecyclerAdapter.Listener
     @Override
     public void onQuestionsFetchFailure() {
         mViewMvc.hideProgressBarIndication();
-        mMessagesDisplayer.showUseCaseError();
+        mToastsHelper.showUseCaseError();
     }
 
     @Override

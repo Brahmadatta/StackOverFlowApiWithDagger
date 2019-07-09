@@ -2,7 +2,6 @@ package example.com.stackoverflowapiproject.networking.questions;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 

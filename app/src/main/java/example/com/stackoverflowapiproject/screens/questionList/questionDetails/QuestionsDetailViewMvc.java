@@ -1,6 +1,6 @@
-package example.com.stackoverflowapiproject.screens.questionList.questionList;
+package example.com.stackoverflowapiproject.screens.questionList.questionDetails;
 
-import example.com.stackoverflowapiproject.screens.questionList.common.ViewMvc;
+import example.com.stackoverflowapiproject.screens.questionList.common.views.ViewMvc;
 import example.com.stackoverflowapiproject.questions.QuestionDetails;
 
 public interface QuestionsDetailViewMvc extends ViewMvc {
