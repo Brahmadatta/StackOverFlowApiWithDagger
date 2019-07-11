@@ -9,7 +9,7 @@ import example.com.stackoverflowapiproject.questions.FetchQuestionDetailsUseCase
 import example.com.stackoverflowapiproject.questions.QuestionDetails;
 import example.com.stackoverflowapiproject.screens.questionList.common.toastsHelper.ToastsHelper;
 
-public class QuestionsDetailActivity extends BaseActivity implements FetchQuestionDetailsUseCase.Listener {
+public class QuestionsDetailActivity extends BaseActivity implements FetchQuestionDetailsUseCase.Listener,QuestionsDetailViewMvc.Listener{
 
 
     public static final String EXTRA_QUESTION_ID = "EXTRA_QUESTION_ID";
@@ -19,6 +19,7 @@ public class QuestionsDetailActivity extends BaseActivity implements FetchQuesti
     private ToastsHelper mToastsHelper;
 
     private QuestionsDetailViewMvc mViewMvc;
+
 
     public static void start(Context context,String question_id){
         Intent intent = new Intent(context,QuestionsDetailActivity.class);
@@ -45,12 +46,14 @@ public class QuestionsDetailActivity extends BaseActivity implements FetchQuesti
         mFetchQuestionDetailsUseCase.registerListener(this);
         mViewMvc.showProgressBarIndication();
         mFetchQuestionDetailsUseCase.fetchQuestionDetailsAndNotify(getQuestionId());
+        mViewMvc.registerListener(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         mFetchQuestionDetailsUseCase.unregisterListener(this);
+        mViewMvc.unregisterListener(this);
     }
 
     private void bindQuestionDetails(QuestionDetails questionDetails) {
@@ -73,5 +76,10 @@ public class QuestionsDetailActivity extends BaseActivity implements FetchQuesti
     public void onQuestionDetailsFailed() {
         mViewMvc.hideProgressBarIndication();
         mToastsHelper.showUseCaseError();
+    }
+
+    @Override
+    public void onNavigateUpClicked() {
+        onBackPressed();
     }
 }

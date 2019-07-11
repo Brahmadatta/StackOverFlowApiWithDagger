@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        >
+
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:src="@drawable/btn_back"
+            android:visibility="gone"
+            />
+
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:id="@+id/hambuger_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:visibility="gone"
+            android:src="@drawable/btn_hamburger"
+            />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/txt_toolbar_title"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:textColor="#FFF"
+        android:textAllCaps="true"
+        android:gravity="center"
+        android:layout_centerInParent="false"
+        android:layout_gravity="center"
+        android:textSize="20sp"/>
+
+</RelativeLayout>

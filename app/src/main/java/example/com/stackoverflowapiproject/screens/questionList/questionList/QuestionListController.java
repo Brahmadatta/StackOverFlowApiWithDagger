@@ -46,6 +46,11 @@ public class QuestionListController implements QuestionsRecyclerAdapter.Listener
     }
 
     @Override
+    public void onQuestionsListClicked() {
+        //this is questions list screen - no - op
+    }
+
+    @Override
     public void onQuestionsFetchFailure() {
         mViewMvc.hideProgressBarIndication();
         mToastsHelper.showUseCaseError();

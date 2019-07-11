@@ -13,11 +13,13 @@ import java.util.List;
 
 import example.com.stackoverflowapiproject.R;
 import example.com.stackoverflowapiproject.screens.questionList.common.ToolbarViewMvc;
+import example.com.stackoverflowapiproject.screens.questionList.common.navdrawer.BaseNavDrawerViewMvc;
+import example.com.stackoverflowapiproject.screens.questionList.common.navdrawer.DrawerItems;
 import example.com.stackoverflowapiproject.screens.questionList.common.views.BaseObservableViewMvc;
 import example.com.stackoverflowapiproject.screens.questionList.common.ViewMvcFactory;
 import example.com.stackoverflowapiproject.questions.Question;
 
-public class QuestionsRecyclerviewMvcImpl extends BaseObservableViewMvc<QuestionsListViewMvc.Listener> implements QuestionsListViewMvc, QuestionsRecyclerAdapter.Listener{
+public class QuestionsRecyclerviewMvcImpl extends BaseNavDrawerViewMvc<QuestionsListViewMvc.Listener> implements QuestionsListViewMvc, QuestionsRecyclerAdapter.Listener{
 
     private RecyclerView mRecyclerViewQuestions;
     private QuestionsRecyclerAdapter mAdapter;
@@ -28,6 +30,7 @@ public class QuestionsRecyclerviewMvcImpl extends BaseObservableViewMvc<Question
 
     public QuestionsRecyclerviewMvcImpl(LayoutInflater inflater, ViewGroup parent, ViewMvcFactory viewMvcFactory){
 
+        super(inflater, parent);
          setRootView(inflater.inflate(R.layout.activity_main,parent,false));
 
         mRecyclerViewQuestions = findViewById(R.id.recyclerView_questions);
@@ -39,7 +42,7 @@ public class QuestionsRecyclerviewMvcImpl extends BaseObservableViewMvc<Question
 
         mToolbar = findViewById(R.id.tool_bar);
         mToolbarViewMvc = viewMvcFactory.getToolbarViewMvc(mToolbar);
-        mToolbarViewMvc.setTitle(getContext().getResources().getString(R.string.latest_questions_title));
+        mToolbarViewMvc.setTitle(getString(R.string.latest_questions_title));
         mToolbar.addView(mToolbarViewMvc.getRootView());
     }
 
@@ -52,6 +55,8 @@ public class QuestionsRecyclerviewMvcImpl extends BaseObservableViewMvc<Question
         mAdapter.bindQuestions(questions);
 
     }
+
+
 
     @Override
     public void showProgressBarIndication() {
@@ -68,6 +73,16 @@ public class QuestionsRecyclerviewMvcImpl extends BaseObservableViewMvc<Question
     public void onQuestionClicked(Question question) {
         for (Listener listener : getListeners()){
             listener.onQuestionClicked(question);
+        }
+    }
+
+    @Override
+    protected void onDrawerItemClicked(DrawerItems items) {
+        for (Listener listener : getListeners()){
+            switch (items){
+                case QUESTIONS_LIST:
+                    listener.onQuestionsListClicked();
+            }
         }
     }
 }

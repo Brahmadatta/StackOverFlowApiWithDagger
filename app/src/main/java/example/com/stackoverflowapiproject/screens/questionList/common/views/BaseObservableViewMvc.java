@@ -4,9 +4,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import example.com.stackoverflowapiproject.screens.questionList.common.views.BaseViewMvc;
-import example.com.stackoverflowapiproject.screens.questionList.common.views.ObservableViewMvc;
-
 public abstract class BaseObservableViewMvc<ListenerType> extends BaseViewMvc implements ObservableViewMvc<ListenerType> {
 
 

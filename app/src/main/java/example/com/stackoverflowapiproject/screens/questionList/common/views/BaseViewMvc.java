@@ -4,6 +4,8 @@ package example.com.stackoverflowapiproject.screens.questionList.common.views;
 import android.content.Context;
 import android.view.View;
 
+import androidx.annotation.StringRes;
+
 public abstract class BaseViewMvc implements ViewMvc {
 
     public View mRootView;
@@ -25,5 +27,9 @@ public abstract class BaseViewMvc implements ViewMvc {
 
     protected Context getContext() {
         return getRootView().getContext();
+    }
+
+    protected String getString(@StringRes int id){
+        return getContext().getString(id);
     }
 }
