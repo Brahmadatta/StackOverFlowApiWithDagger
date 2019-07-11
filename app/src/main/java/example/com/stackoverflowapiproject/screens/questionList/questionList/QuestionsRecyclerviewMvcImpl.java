@@ -42,11 +42,26 @@ public class QuestionsRecyclerviewMvcImpl extends BaseNavDrawerViewMvc<Questions
 
         mToolbar = findViewById(R.id.tool_bar);
         mToolbarViewMvc = viewMvcFactory.getToolbarViewMvc(mToolbar);
-        mToolbarViewMvc.setTitle(getString(R.string.latest_questions_title));
-        mToolbar.addView(mToolbarViewMvc.getRootView());
+
+        initToolbar();
     }
 
+    private void initToolbar() {
 
+
+        mToolbarViewMvc.setTitle(getString(R.string.latest_questions_title));
+        mToolbar.addView(mToolbarViewMvc.getRootView());
+
+        mToolbarViewMvc.enableHamburgerButtonAndListen(new ToolbarViewMvc.HamburgerClickListener() {
+            @Override
+            public void onHamburgerClicked() {
+
+                openDrawer();
+
+            }
+        });
+
+    }
 
 
     @Override

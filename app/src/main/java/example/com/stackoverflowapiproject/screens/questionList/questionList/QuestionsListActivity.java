@@ -40,5 +40,11 @@ public class QuestionsListActivity extends BaseActivity {
         mQuestionListController.onStop();
     }
 
+    @Override
+    public void onBackPressed() {
 
+        if (!mQuestionListController.onBackPressed()){
+            super.onBackPressed();
+        }
+    }
 }

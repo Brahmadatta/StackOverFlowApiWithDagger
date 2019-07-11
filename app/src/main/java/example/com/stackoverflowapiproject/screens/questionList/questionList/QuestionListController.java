@@ -61,4 +61,13 @@ public class QuestionListController implements QuestionsRecyclerAdapter.Listener
         mViewMvc.hideProgressBarIndication();
         mViewMvc.bindQuestions(questions);
     }
+
+    public boolean onBackPressed() {
+        if (mViewMvc.isDrawerOpen()){
+            mViewMvc.closeDrawer();
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

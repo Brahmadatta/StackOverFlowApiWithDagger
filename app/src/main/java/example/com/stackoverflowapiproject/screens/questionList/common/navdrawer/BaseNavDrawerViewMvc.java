@@ -1,5 +1,6 @@
 package example.com.stackoverflowapiproject.screens.questionList.common.navdrawer;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,7 +16,8 @@ import com.google.android.material.navigation.NavigationView;
 import example.com.stackoverflowapiproject.R;
 import example.com.stackoverflowapiproject.screens.questionList.common.views.BaseObservableViewMvc;
 
-public abstract class BaseNavDrawerViewMvc<ListenerType> extends BaseObservableViewMvc<ListenerType> {
+public abstract class BaseNavDrawerViewMvc<ListenerType> extends BaseObservableViewMvc<ListenerType>
+        implements NavDrawerViewMvc{
 
     private final DrawerLayout mDrawerLayout;
     private final FrameLayout mFrameLayout;
@@ -39,6 +41,24 @@ public abstract class BaseNavDrawerViewMvc<ListenerType> extends BaseObservableV
                 return false;
             }
         });
+    }
+
+    @Override
+    public void openDrawer() {
+
+        mDrawerLayout.openDrawer(Gravity.START);
+
+    }
+
+
+    @Override
+    public boolean isDrawerOpen() {
+        return mDrawerLayout.isDrawerOpen(Gravity.START);
+    }
+
+    @Override
+    public void closeDrawer() {
+        mDrawerLayout.closeDrawers();
     }
 
     protected abstract void onDrawerItemClicked(DrawerItems items);

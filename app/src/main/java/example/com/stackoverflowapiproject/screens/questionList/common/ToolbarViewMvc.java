@@ -37,12 +37,12 @@ public class ToolbarViewMvc extends BaseViewMvc {
         btnBack = findViewById(R.id.back_button);
         btnHamburger = findViewById(R.id.hambuger_button);
 
-        /*btnHamburger.setOnClickListener(new View.OnClickListener() {
+        btnHamburger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mHamburgerClickListener.onHamburgerClicked();
             }
-        });*/
+        });
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,15 +56,15 @@ public class ToolbarViewMvc extends BaseViewMvc {
         mToolbarTitle.setText(title);
     }
 
-    /*public void enableHamburgerButtonAndListen(HamburgerClickListener hamburgerClickListener){
+    public void enableHamburgerButtonAndListen(HamburgerClickListener hamburgerClickListener){
 
-        if (hamburgerClickListener != null){
+        if (mNavigateUpcClickListener != null){
             throw new RuntimeException("hamburger and up shouldn't be shown together");
         }else {
             mHamburgerClickListener = hamburgerClickListener;
             btnHamburger.setVisibility(View.VISIBLE);
         }
-    }*/
+    }
 
     public void enableUpButtonAndListen(NavigateUpcClickListener navigateUpcClickListener){
         if (mHamburgerClickListener != null){
