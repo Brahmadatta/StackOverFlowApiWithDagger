@@ -35,7 +35,7 @@ public abstract class BaseNavDrawerViewMvc<ListenerType> extends BaseObservableV
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
                 mDrawerLayout.closeDrawers();
-                if (menuItem.getItemId() == R.string.menu_item_questions_list){
+                if (menuItem.getItemId() == R.id.drawer_menu_latest_questions){
                     onDrawerItemClicked(DrawerItems.QUESTIONS_LIST);
                 }
                 return false;

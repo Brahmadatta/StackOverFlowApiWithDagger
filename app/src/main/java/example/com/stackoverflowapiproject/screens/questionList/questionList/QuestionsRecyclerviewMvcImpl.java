@@ -18,6 +18,7 @@ import example.com.stackoverflowapiproject.screens.questionList.common.navdrawer
 import example.com.stackoverflowapiproject.screens.questionList.common.views.BaseObservableViewMvc;
 import example.com.stackoverflowapiproject.screens.questionList.common.ViewMvcFactory;
 import example.com.stackoverflowapiproject.questions.Question;
+import example.com.stackoverflowapiproject.screens.questionList.questionDetails.QuestionsDetailViewMvc;
 
 public class QuestionsRecyclerviewMvcImpl extends BaseNavDrawerViewMvc<QuestionsListViewMvc.Listener> implements QuestionsListViewMvc, QuestionsRecyclerAdapter.Listener{
 

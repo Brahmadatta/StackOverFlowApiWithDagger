@@ -14,8 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".screens.questionList.questionDetails.QuestionsDetailActivity"/>
-        <activity android:name=".screens.questionList.questionList.QuestionsListActivity">
+        <activity android:name=".screens.questionList.common.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
