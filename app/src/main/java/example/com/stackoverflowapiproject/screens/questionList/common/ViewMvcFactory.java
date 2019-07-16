@@ -5,6 +5,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 
+import example.com.stackoverflowapiproject.screens.questionList.common.navdrawer.NavDrawerHelper;
+import example.com.stackoverflowapiproject.screens.questionList.common.navdrawer.NavDrawerViewMvc;
+import example.com.stackoverflowapiproject.screens.questionList.common.navdrawer.NavDrawerViewMvcImpl;
 import example.com.stackoverflowapiproject.screens.questionList.questionDetails.QuestionDetailsViewMvcImpl;
 import example.com.stackoverflowapiproject.screens.questionList.questionList.questionslisitem.QuestionListItemViewMvcImpl;
 import example.com.stackoverflowapiproject.screens.questionList.questionDetails.QuestionsDetailViewMvc;
@@ -17,12 +20,15 @@ public class ViewMvcFactory {
 
     private final LayoutInflater mLayoutInflater;
 
-    public ViewMvcFactory(LayoutInflater mLayoutInflater) {
+    private final NavDrawerHelper mNavDrawerHelper;
+
+    public ViewMvcFactory(LayoutInflater mLayoutInflater, NavDrawerHelper navDrawerHelper) {
         this.mLayoutInflater = mLayoutInflater;
+        mNavDrawerHelper = navDrawerHelper;
     }
 
     public QuestionsListViewMvc getQuestionListViewMvc(@Nullable ViewGroup parent){
-        return new QuestionsRecyclerviewMvcImpl(mLayoutInflater,parent,this);
+        return new QuestionsRecyclerviewMvcImpl(mLayoutInflater,parent,this, mNavDrawerHelper);
     }
 
     public QuestionsListItemViewMvc getQuestionListViewItemMvc(@Nullable ViewGroup parent){
@@ -36,4 +42,9 @@ public class ViewMvcFactory {
     public ToolbarViewMvc getToolbarViewMvc(@Nullable ViewGroup parent){
         return new ToolbarViewMvc(mLayoutInflater,parent);
     }
+
+    public NavDrawerViewMvc getNavDrawerViewMvc(@Nullable ViewGroup parent) {
+        return new NavDrawerViewMvcImpl(mLayoutInflater,parent);
+    }
+
 }

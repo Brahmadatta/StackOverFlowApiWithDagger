@@ -3,7 +3,6 @@ package example.com.stackoverflowapiproject.screens.questionList.common.navdrawe
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
@@ -16,15 +15,16 @@ import com.google.android.material.navigation.NavigationView;
 import example.com.stackoverflowapiproject.R;
 import example.com.stackoverflowapiproject.screens.questionList.common.views.BaseObservableViewMvc;
 
-public abstract class BaseNavDrawerViewMvc<ListenerType> extends BaseObservableViewMvc<ListenerType>
+public class NavDrawerViewMvcImpl extends BaseObservableViewMvc<NavDrawerViewMvc.Listener>
         implements NavDrawerViewMvc{
 
     private final DrawerLayout mDrawerLayout;
     private final FrameLayout mFrameLayout;
     private final NavigationView mNavigationView;
 
-    public BaseNavDrawerViewMvc(LayoutInflater inflater, @Nullable ViewGroup parent) {
-        super.setRootView(inflater.inflate(R.layout.layout_drawer,parent,false));
+    public NavDrawerViewMvcImpl(LayoutInflater inflater, @Nullable ViewGroup parent) {
+        //super.setRootView(inflater.inflate(R.layout.layout_drawer,parent,false));
+        setRootView(inflater.inflate(R.layout.layout_drawer,parent,false));
         mDrawerLayout = findViewById(R.id.drawer_layout);
         mFrameLayout = findViewById(R.id.frame_content);
         mNavigationView = findViewById(R.id.nav_view);
@@ -36,7 +36,10 @@ public abstract class BaseNavDrawerViewMvc<ListenerType> extends BaseObservableV
 
                 mDrawerLayout.closeDrawers();
                 if (menuItem.getItemId() == R.id.drawer_menu_latest_questions){
-                    onDrawerItemClicked(DrawerItems.QUESTIONS_LIST);
+
+                    for (Listener listener : getListeners()){
+                        listener.onQuestionsListClicked();
+                    }
                 }
                 return false;
             }
@@ -52,6 +55,11 @@ public abstract class BaseNavDrawerViewMvc<ListenerType> extends BaseObservableV
 
 
     @Override
+    public FrameLayout getFragmentFrame() {
+        return mFrameLayout;
+    }
+
+    @Override
     public boolean isDrawerOpen() {
         return mDrawerLayout.isDrawerOpen(Gravity.START);
     }
@@ -61,10 +69,14 @@ public abstract class BaseNavDrawerViewMvc<ListenerType> extends BaseObservableV
         mDrawerLayout.closeDrawers();
     }
 
-    protected abstract void onDrawerItemClicked(DrawerItems items);
+    public FrameLayout getFrameLayout() {
+        return mFrameLayout;
+    }
 
-    @Override
+    /*protected abstract void onDrawerItemClicked(DrawerItems items);*/
+
+    /*@Override
     protected void setRootView(View view) {
         mFrameLayout.addView(view);
-    }
+    }*/
 }

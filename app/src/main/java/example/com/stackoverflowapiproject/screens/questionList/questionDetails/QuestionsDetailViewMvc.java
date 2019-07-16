@@ -6,14 +6,10 @@ import example.com.stackoverflowapiproject.screens.questionList.common.views.Obs
 import example.com.stackoverflowapiproject.screens.questionList.common.views.ViewMvc;
 import example.com.stackoverflowapiproject.questions.QuestionDetails;
 
-public interface QuestionsDetailViewMvc extends ObservableViewMvc<QuestionsDetailViewMvc.Listener> ,
-        NavDrawerViewMvc {
+public interface QuestionsDetailViewMvc extends ObservableViewMvc<QuestionsDetailViewMvc.Listener> {
 
     public interface Listener{
         void onNavigateUpClicked();
-
-        void onDrawerItemClicked(DrawerItems items);
-
     }
 
     void bindQuestion(QuestionDetails question);

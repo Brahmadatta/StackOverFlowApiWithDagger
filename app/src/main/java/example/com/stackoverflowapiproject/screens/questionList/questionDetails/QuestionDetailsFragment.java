@@ -18,8 +18,7 @@ import example.com.stackoverflowapiproject.screens.questionList.common.screensNa
 import example.com.stackoverflowapiproject.screens.questionList.common.toastsHelper.ToastsHelper;
 
 
-public class QuestionDetailsFragment extends BaseFragment  implements FetchQuestionDetailsUseCase.Listener,QuestionsDetailViewMvc.Listener,
-        BackPressedListener {
+public class QuestionDetailsFragment extends BaseFragment  implements FetchQuestionDetailsUseCase.Listener,QuestionsDetailViewMvc.Listener{
 
     private static final String ARG_QUESTION_ID = "ARG_QUESTION_ID";
 
@@ -31,7 +30,6 @@ public class QuestionDetailsFragment extends BaseFragment  implements FetchQuest
 
     private ScreensNavigator mScreensNavigator;
 
-    private BackPressDispatcher mBackPressDispatcher;
 
     public static QuestionDetailsFragment newInstance(String questionId){
 
@@ -54,7 +52,6 @@ public class QuestionDetailsFragment extends BaseFragment  implements FetchQuest
 
         mScreensNavigator = getCompositionRoot().getScreenNavigator();
 
-        mBackPressDispatcher = getCompositionRoot().getBackPressDispatcher();
 
         mViewMvc = getCompositionRoot().getViewMvcFactory().getQuestionDetailsViewMvc(null);
 
@@ -66,7 +63,6 @@ public class QuestionDetailsFragment extends BaseFragment  implements FetchQuest
     public void onStart() {
         super.onStart();
         mFetchQuestionDetailsUseCase.registerListener(this);
-        mBackPressDispatcher.registerListener(this);
         mViewMvc.showProgressBarIndication();
         mFetchQuestionDetailsUseCase.fetchQuestionDetailsAndNotify(getQuestionId());
         mViewMvc.registerListener(this);
@@ -76,7 +72,6 @@ public class QuestionDetailsFragment extends BaseFragment  implements FetchQuest
     public void onStop() {
         super.onStop();
         mFetchQuestionDetailsUseCase.unregisterListener(this);
-        mBackPressDispatcher.unregisterListener(this);
         mViewMvc.unregisterListener(this);
     }
 
@@ -107,24 +102,8 @@ public class QuestionDetailsFragment extends BaseFragment  implements FetchQuest
         mScreensNavigator.naviagetUp();
     }
 
-    @Override
-    public void onDrawerItemClicked(DrawerItems items) {
 
-        switch (items){
-            case QUESTIONS_LIST:
-                mScreensNavigator.toQuestionsList();
-        }
 
-    }
 
-    @Override
-    public boolean onBackPressed() {
-        if (mViewMvc.isDrawerOpen()){
-            mViewMvc.closeDrawer();
-            return true;
-        }else {
-            return false;
-        }
-    }
 
 }

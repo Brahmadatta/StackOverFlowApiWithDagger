@@ -1,6 +1,5 @@
 package example.com.stackoverflowapiproject.common.dependencyInjection;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 
@@ -14,6 +13,7 @@ import example.com.stackoverflowapiproject.questions.FetchQuestionDetailsUseCase
 import example.com.stackoverflowapiproject.screens.questionList.common.controllers.BackPressDispatcher;
 import example.com.stackoverflowapiproject.screens.questionList.common.controllers.FragmentFrameWrapper;
 import example.com.stackoverflowapiproject.screens.questionList.common.fragmentframehelper.FragmentFrameHelper;
+import example.com.stackoverflowapiproject.screens.questionList.common.navdrawer.NavDrawerHelper;
 import example.com.stackoverflowapiproject.screens.questionList.common.toastsHelper.ToastsHelper;
 import example.com.stackoverflowapiproject.screens.questionList.questionList.QuestionListController;
 import example.com.stackoverflowapiproject.screens.questionList.common.screensNavigator.ScreensNavigator;
@@ -45,7 +45,11 @@ public class ControllerCompositionRoot {
     }
 
     public ViewMvcFactory getViewMvcFactory(){
-        return new ViewMvcFactory(getLayoutInflater());
+        return new ViewMvcFactory(getLayoutInflater(), getNavDrawerHelper());
+    }
+
+    private NavDrawerHelper getNavDrawerHelper() {
+        return (NavDrawerHelper) getActivity();
     }
 
     public FetchQuestionDetailsUseCase getFetchQuestionsDetailUseCase() {
@@ -58,7 +62,7 @@ public class ControllerCompositionRoot {
 
     public QuestionListController getQuestionsListController() {
         return new QuestionListController(getFetchLastActiveQuestionsUseCase(),getScreenNavigator()
-        ,getToastsHelper(),getBackPressDispatcher());
+        ,getToastsHelper());
     }
 
     public Context getContext(){

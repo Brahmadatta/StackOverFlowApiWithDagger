@@ -6,12 +6,10 @@ import example.com.stackoverflowapiproject.screens.questionList.common.navdrawer
 import example.com.stackoverflowapiproject.screens.questionList.common.views.ObservableViewMvc;
 import example.com.stackoverflowapiproject.questions.Question;
 
-public interface QuestionsListViewMvc extends ObservableViewMvc<QuestionsListViewMvc.Listener> , NavDrawerViewMvc {
+public interface QuestionsListViewMvc extends ObservableViewMvc<QuestionsListViewMvc.Listener> {
 
     public interface Listener{
         void onQuestionClicked(Question question);
-
-        void onQuestionsListClicked();
 
     }
 

@@ -11,11 +11,10 @@ import androidx.appcompat.widget.Toolbar;
 import example.com.stackoverflowapiproject.R;
 import example.com.stackoverflowapiproject.screens.questionList.common.ToolbarViewMvc;
 import example.com.stackoverflowapiproject.screens.questionList.common.ViewMvcFactory;
-import example.com.stackoverflowapiproject.screens.questionList.common.navdrawer.BaseNavDrawerViewMvc;
-import example.com.stackoverflowapiproject.screens.questionList.common.navdrawer.DrawerItems;
 import example.com.stackoverflowapiproject.questions.QuestionDetails;
+import example.com.stackoverflowapiproject.screens.questionList.common.views.BaseObservableViewMvc;
 
-public class QuestionDetailsViewMvcImpl extends BaseNavDrawerViewMvc<QuestionsDetailViewMvc.Listener> implements QuestionsDetailViewMvc{
+public class QuestionDetailsViewMvcImpl extends BaseObservableViewMvc<QuestionsDetailViewMvc.Listener> implements QuestionsDetailViewMvc{
 
     private final TextView mQuestionTitle;
 
@@ -29,7 +28,6 @@ public class QuestionDetailsViewMvcImpl extends BaseNavDrawerViewMvc<QuestionsDe
 
 
     public QuestionDetailsViewMvcImpl(LayoutInflater inflater, ViewGroup parent, ViewMvcFactory viewMvcFactory) {
-        super(inflater, parent);
         setRootView(inflater.inflate(R.layout.activity_questions_detail_list,parent));
         mQuestionTitle = findViewById(R.id.question_title);
         mQuestionBody = findViewById(R.id.question_body);
@@ -79,11 +77,4 @@ public class QuestionDetailsViewMvcImpl extends BaseNavDrawerViewMvc<QuestionsDe
         mProgressBar.setVisibility(View.GONE);
     }
 
-
-    @Override
-    public void onDrawerItemClicked(DrawerItems items) {
-        for (Listener listener : getListeners()){
-            listener.onDrawerItemClicked(items);
-        }
-    }
 }

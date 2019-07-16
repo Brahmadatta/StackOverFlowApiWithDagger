@@ -13,26 +13,24 @@ import java.util.List;
 
 import example.com.stackoverflowapiproject.R;
 import example.com.stackoverflowapiproject.screens.questionList.common.ToolbarViewMvc;
-import example.com.stackoverflowapiproject.screens.questionList.common.navdrawer.BaseNavDrawerViewMvc;
-import example.com.stackoverflowapiproject.screens.questionList.common.navdrawer.DrawerItems;
+import example.com.stackoverflowapiproject.screens.questionList.common.navdrawer.NavDrawerHelper;
 import example.com.stackoverflowapiproject.screens.questionList.common.views.BaseObservableViewMvc;
 import example.com.stackoverflowapiproject.screens.questionList.common.ViewMvcFactory;
 import example.com.stackoverflowapiproject.questions.Question;
-import example.com.stackoverflowapiproject.screens.questionList.questionDetails.QuestionsDetailViewMvc;
 
-public class QuestionsRecyclerviewMvcImpl extends BaseNavDrawerViewMvc<QuestionsListViewMvc.Listener> implements QuestionsListViewMvc, QuestionsRecyclerAdapter.Listener{
+public class QuestionsRecyclerviewMvcImpl extends BaseObservableViewMvc<QuestionsListViewMvc.Listener> implements QuestionsListViewMvc, QuestionsRecyclerAdapter.Listener{
 
     private RecyclerView mRecyclerViewQuestions;
     private QuestionsRecyclerAdapter mAdapter;
     private ProgressBar mProgressBar;
     private ToolbarViewMvc mToolbarViewMvc;
     private Toolbar mToolbar;
+    private final NavDrawerHelper mNavDrawerHelper;
 
+    public QuestionsRecyclerviewMvcImpl(LayoutInflater inflater, ViewGroup parent, ViewMvcFactory viewMvcFactory, NavDrawerHelper navDrawerHelper){
+        mNavDrawerHelper = navDrawerHelper;
 
-    public QuestionsRecyclerviewMvcImpl(LayoutInflater inflater, ViewGroup parent, ViewMvcFactory viewMvcFactory){
-
-        super(inflater, parent);
-         setRootView(inflater.inflate(R.layout.activity_main,parent,false));
+        setRootView(inflater.inflate(R.layout.activity_main,parent,false));
 
         mRecyclerViewQuestions = findViewById(R.id.recyclerView_questions);
         mProgressBar = findViewById(R.id.progress_bar);
@@ -57,7 +55,7 @@ public class QuestionsRecyclerviewMvcImpl extends BaseNavDrawerViewMvc<Questions
             @Override
             public void onHamburgerClicked() {
 
-                openDrawer();
+                mNavDrawerHelper.openDrawer();
 
             }
         });
@@ -92,13 +90,4 @@ public class QuestionsRecyclerviewMvcImpl extends BaseNavDrawerViewMvc<Questions
         }
     }
 
-    @Override
-    protected void onDrawerItemClicked(DrawerItems items) {
-        for (Listener listener : getListeners()){
-            switch (items){
-                case QUESTIONS_LIST:
-                    listener.onQuestionsListClicked();
-            }
-        }
-    }
 }

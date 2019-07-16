@@ -15,30 +15,39 @@ import example.com.stackoverflowapiproject.screens.questionList.common.controlle
 import example.com.stackoverflowapiproject.screens.questionList.common.controllers.BackPressedListener;
 import example.com.stackoverflowapiproject.screens.questionList.common.controllers.BaseActivity;
 import example.com.stackoverflowapiproject.screens.questionList.common.controllers.FragmentFrameWrapper;
+import example.com.stackoverflowapiproject.screens.questionList.common.navdrawer.NavDrawerHelper;
+import example.com.stackoverflowapiproject.screens.questionList.common.navdrawer.NavDrawerViewMvc;
 import example.com.stackoverflowapiproject.screens.questionList.common.screensNavigator.ScreensNavigator;
 
-public class MainActivity extends BaseActivity implements BackPressDispatcher , FragmentFrameWrapper {
+public class MainActivity extends BaseActivity implements BackPressDispatcher , FragmentFrameWrapper, NavDrawerViewMvc.Listener, NavDrawerHelper {
 
 
-    public static void startClearTop(Context context) {
+    /*public static void startClearTop(Context context) {
 
         Intent intent = new Intent(context, MainActivity.class);
         intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
-    }
+    }*/
 
     private Set<BackPressedListener> mBackPressedListeners = new HashSet<>();
 
     private ScreensNavigator mScreensNavigator;
 
+    private NavDrawerViewMvc mViewMvc;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_content_frame);
+
 
         mScreensNavigator = getCompositionRoot().getScreenNavigator();
+
+        mViewMvc = getCompositionRoot().getViewMvcFactory().getNavDrawerViewMvc(null);
+
         mScreensNavigator.toQuestionsList();
 
+        setContentView(mViewMvc.getRootView());
+        //setContentView(R.layout.layout_content_frame);
 
         /*QuestionListFragment fragment;
         if (savedInstanceState == null){
@@ -48,6 +57,18 @@ public class MainActivity extends BaseActivity implements BackPressDispatcher , 
             ft.add(R.id.frame_content,fragment).commit();
         }*/
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mViewMvc.registerListener(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mViewMvc.unregisterListener(this);
     }
 
     @Override
@@ -78,6 +99,28 @@ public class MainActivity extends BaseActivity implements BackPressDispatcher , 
 
     @Override
     public FrameLayout getFragmentFrame() {
-        return findViewById(R.id.frame_content);
+        //return findViewById(R.id.frame_content);
+        return mViewMvc.getFragmentFrame();
+    }
+
+    @Override
+    public void onQuestionsListClicked() {
+        mScreensNavigator.toQuestionsList();
+
+    }
+
+    @Override
+    public void openDrawer() {
+        mViewMvc.openDrawer();
+    }
+
+    @Override
+    public void closeDrawer() {
+        mViewMvc.closeDrawer();
+    }
+
+    @Override
+    public boolean isDrawerOpened() {
+        return mViewMvc.isDrawerOpen();
     }
 }

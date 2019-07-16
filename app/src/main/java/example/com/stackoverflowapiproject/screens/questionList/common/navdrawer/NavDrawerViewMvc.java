@@ -1,6 +1,19 @@
 package example.com.stackoverflowapiproject.screens.questionList.common.navdrawer;
 
-public interface NavDrawerViewMvc {
+import android.widget.FrameLayout;
+
+import example.com.stackoverflowapiproject.screens.questionList.common.views.ObservableViewMvc;
+
+public interface NavDrawerViewMvc extends ObservableViewMvc<NavDrawerViewMvc.Listener> {
+
+
+    interface Listener{
+
+
+        void onQuestionsListClicked();
+    }
+
+    FrameLayout getFragmentFrame();
 
     boolean isDrawerOpen();
 
